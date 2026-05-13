@@ -1410,6 +1410,15 @@
 
             function renderPhaseTasks() {
                 let tasks = getPhaseTasks();
+                        // 按截止时间排序：最紧急（最早截止）的排在最上面
+                      tasks.sort((a, b) => {
+                                 if (a.deadline && b.deadline) {
+                                       return new Date(a.deadline) - new Date(b.deadline);
+                                }
+                                if (a.deadline) return -1; // a 有截止时间，排在前面
+                                if (b.deadline) return 1;  // b 有截止时间，a 无截止时间，b 排在 a 前面
+                                 return 0; // 都无截止时间，保持原顺序
+                     });
                 let changed = false;
                 const now = Date.now();
                 tasks = tasks.map(task => {
