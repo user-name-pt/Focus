@@ -6,9 +6,6 @@
     <title>每日专注计时</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        /* 此处样式与您之前提供的完全一致，为节省篇幅省略，但实际使用时请复制原样式 */
-        /* 您可以直接使用原来完整的样式，或从我首次回复中复制 */
-        /* 为确保完整，我已将所有样式保留在最终文件中，请放心替换 */
         :root {
             --bg: #f5f0eb;
             --card-bg: #ffffff;
@@ -30,13 +27,7 @@
             --radius-xl: 32px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: var(--bg);
@@ -49,489 +40,110 @@
             -webkit-tap-highlight-color: transparent;
             line-height: 1.5;
         }
-
-        .app-container {
-            width: 100%;
-            max-width: 440px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            padding-bottom: 32px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 8px 0;
-        }
-        .header .app-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .header .app-title .icon {
-            font-size: 1.6rem;
-        }
-        .header .date-display {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
-        .daily-total-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        .daily-total-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), #7c8cf8, var(--accent));
-            border-radius: 3px 3px 0 0;
-        }
-        .daily-total-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            margin-bottom: 6px;
-        }
-        .daily-total-time {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text);
-            font-variant-numeric: tabular-nums;
-            font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace;
-            line-height: 1;
-            transition: color 0.3s;
-        }
-        .daily-total-time.active-focus {
-            color: var(--primary);
-        }
-        .daily-total-detail {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        .daily-total-detail span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .daily-total-detail .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--success);
-            display: inline-block;
-            animation: dot-pulse 2s infinite;
-        }
-        @keyframes dot-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.6); }
-        }
-
-        .timer-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 24px 20px 20px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            transition: var(--transition);
-            position: relative;
-        }
-        .timer-card.running {
-            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15), var(--shadow-lg);
-        }
-        .timer-card.completed-flash {
-            animation: complete-flash 0.6s ease-out;
-        }
-        @keyframes complete-flash {
-            0% { box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7), var(--shadow-lg); background: #f0fdf6; }
-            100% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0), var(--shadow-lg); background: var(--card-bg); }
-        }
-
-        .timer-circle-wrapper {
-            position: relative;
-            width: 200px;
-            height: 200px;
-        }
-        .timer-circle-svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-        .timer-circle-bg {
-            fill: none;
-            stroke: #eef1f5;
-            stroke-width: 10;
-        }
-        .timer-circle-progress {
-            fill: none;
-            stroke: var(--primary);
-            stroke-width: 10;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 0.4s linear, stroke 0.4s;
-        }
+        .app-container { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 16px; padding-bottom: 32px; }
+        .header { text-align: center; padding: 8px 0; }
+        .header .app-title { font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .header .app-title .icon { font-size: 1.6rem; }
+        .header .date-display { font-size: 0.9rem; color: var(--text-secondary); margin-top: 2px; font-weight: 500; }
+        .daily-total-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 20px 24px; box-shadow: var(--shadow); text-align: center; position: relative; overflow: hidden; transition: var(--transition); }
+        .daily-total-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), #7c8cf8, var(--accent)); border-radius: 3px 3px 0 0; }
+        .daily-total-label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; letter-spacing: 0.04em; margin-bottom: 6px; }
+        .daily-total-time { font-size: 3rem; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace; line-height: 1; transition: color 0.3s; }
+        .daily-total-time.active-focus { color: var(--primary); }
+        .daily-total-detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .daily-total-detail span { display: flex; align-items: center; gap: 4px; }
+        .daily-total-detail .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); display: inline-block; animation: dot-pulse 2s infinite; }
+        @keyframes dot-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.6); } }
+        .timer-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px 20px 20px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; gap: 18px; transition: var(--transition); position: relative; }
+        .timer-card.running { box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15), var(--shadow-lg); }
+        .timer-card.completed-flash { animation: complete-flash 0.6s ease-out; }
+        @keyframes complete-flash { 0% { box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7), var(--shadow-lg); background: #f0fdf6; } 100% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0), var(--shadow-lg); background: var(--card-bg); } }
+        .timer-circle-wrapper { position: relative; width: 200px; height: 200px; }
+        .timer-circle-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .timer-circle-bg { fill: none; stroke: #eef1f5; stroke-width: 10; }
+        .timer-circle-progress { fill: none; stroke: var(--primary); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 0.4s linear, stroke 0.4s; }
         .timer-circle-progress.warning { stroke: var(--accent); }
         .timer-circle-progress.danger { stroke: var(--danger); }
         .timer-circle-progress.completed-state { stroke: var(--success); }
-        .timer-time-display {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2.6rem;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace;
-            color: var(--text);
-            transition: color 0.3s;
-        }
+        .timer-time-display { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.6rem; font-weight: 700; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace; color: var(--text); transition: color 0.3s; }
         .timer-time-display.warning-time { color: var(--accent); }
         .timer-time-display.danger-time { color: var(--danger); }
-        .timer-time-display.completed-time {
-            color: var(--success);
-            animation: bounce-in 0.5s ease-out;
-        }
-        @keyframes bounce-in {
-            0% { transform: translate(-50%, -50%) scale(1.15); }
-            60% { transform: translate(-50%, -50%) scale(0.95); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-
-        .mode-toggle {
-            display: flex;
-            background: #f3f4f6;
-            border-radius: 25px;
-            padding: 3px;
-            gap: 2px;
-        }
-        .mode-toggle button {
-            padding: 8px 18px;
-            border-radius: 22px;
-            border: none;
-            background: transparent;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-        .mode-toggle button.active {
-            background: #fff;
-            color: var(--primary);
-            font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
+        .timer-time-display.completed-time { color: var(--success); animation: bounce-in 0.5s ease-out; }
+        @keyframes bounce-in { 0% { transform: translate(-50%, -50%) scale(1.15); } 60% { transform: translate(-50%, -50%) scale(0.95); } 100% { transform: translate(-50%, -50%) scale(1); } }
+        .mode-toggle { display: flex; background: #f3f4f6; border-radius: 25px; padding: 3px; gap: 2px; }
+        .mode-toggle button { padding: 8px 18px; border-radius: 22px; border: none; background: transparent; font-size: 0.85rem; font-weight: 500; cursor: pointer; color: var(--text-secondary); transition: var(--transition); white-space: nowrap; }
+        .mode-toggle button.active { background: #fff; color: var(--primary); font-weight: 600; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
         .preset-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-        .preset-btn {
-            padding: 9px 16px;
-            border-radius: 20px;
-            border: 1.5px solid var(--border);
-            background: #fff;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--text);
-            transition: var(--transition);
-        }
-        .preset-btn.active-preset {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: #fff;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(74, 108, 247, 0.3);
-        }
-
+        .preset-btn { padding: 9px 16px; border-radius: 20px; border: 1.5px solid var(--border); background: #fff; font-size: 0.85rem; font-weight: 500; cursor: pointer; color: var(--text); transition: var(--transition); }
+        .preset-btn.active-preset { border-color: var(--primary); background: var(--primary); color: #fff; font-weight: 600; box-shadow: 0 2px 8px rgba(74, 108, 247, 0.3); }
         .custom-time-row { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
-        .custom-time-input {
-            width: 48px;
-            padding: 7px 6px;
-            border: 1.5px solid var(--border);
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text);
-            background: #fafbfc;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-        .custom-time-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
-            background: #fff;
-        }
-
+        .custom-time-input { width: 48px; padding: 7px 6px; border: 1.5px solid var(--border); border-radius: 10px; text-align: center; font-size: 0.9rem; font-weight: 600; color: var(--text); background: #fafbfc; transition: var(--transition); font-family: inherit; }
+        .custom-time-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1); background: #fff; }
         .control-buttons { display: flex; gap: 12px; align-items: center; }
-        .btn {
-            padding: 8px 16px;
-            border-radius: 24px;
-            border: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            letter-spacing: 0.03em;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
+        .btn { padding: 8px 16px; border-radius: 24px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; letter-spacing: 0.03em; transition: var(--transition); display: flex; align-items: center; gap: 4px; white-space: nowrap; }
         .btn:active { transform: scale(0.94); }
-        .btn-start {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(74, 108, 247, 0.35);
-            font-size: 0.9rem;
-            padding: 10px 24px;
-        }
+        .btn-start { background: var(--primary); color: #fff; box-shadow: 0 4px 14px rgba(74, 108, 247, 0.35); font-size: 0.9rem; padding: 10px 24px; }
         .btn-start:hover { background: #3d5ce5; box-shadow: 0 6px 20px rgba(74, 108, 247, 0.45); }
-        .btn-pause {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(245, 158, 75, 0.35);
-        }
-        .btn-stop {
-            background: #fff;
-            color: var(--danger);
-            border: 1.5px solid #fecaca;
-            box-shadow: var(--shadow-sm);
-        }
+        .btn-pause { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(245, 158, 75, 0.35); }
+        .btn-stop { background: #fff; color: var(--danger); border: 1.5px solid #fecaca; box-shadow: var(--shadow-sm); }
         .btn-stop:hover { background: #fef2f2; border-color: var(--danger); }
-        .btn-reset {
-            background: #f3f4f6;
-            color: var(--text-secondary);
-            border: none;
-            box-shadow: var(--shadow-sm);
-            font-size: 0.85rem;
-            padding: 8px 16px;
-        }
+        .btn-reset { background: #f3f4f6; color: var(--text-secondary); border: none; box-shadow: var(--shadow-sm); font-size: 0.85rem; padding: 8px 16px; }
         .btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
-
         .status-badge { font-size: 0.8rem; font-weight: 600; padding: 5px 14px; border-radius: 14px; }
         .status-badge.idle { background: #f3f4f6; color: var(--text-muted); }
         .status-badge.running { background: #eef1ff; color: var(--primary); animation: status-pulse 2s infinite; }
         .status-badge.paused { background: #fff7ed; color: var(--accent); }
         @keyframes status-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-
-        .sessions-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            box-shadow: var(--shadow);
-        }
-        .sessions-card h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .sessions-card h3 .count-badge {
-            background: var(--primary-light);
-            color: var(--primary);
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-        .session-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: #fafbfc;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-            animation: slide-in 0.3s ease-out;
-        }
+        .sessions-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 18px 20px; box-shadow: var(--shadow); }
+        .sessions-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .sessions-card h3 .count-badge { background: var(--primary-light); color: var(--primary); font-size: 0.75rem; padding: 3px 10px; border-radius: 12px; font-weight: 600; }
+        .session-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; background: #fafbfc; margin-bottom: 6px; font-size: 0.85rem; animation: slide-in 0.3s ease-out; }
         @keyframes slide-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-        .session-item .session-index {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+        .session-item .session-index { width: 26px; height: 26px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .session-item .session-info { flex: 1; margin-left: 10px; display: flex; flex-direction: column; gap: 2px; }
         .session-item .session-time-range { font-weight: 500; color: var(--text); }
-        .session-item .session-duration {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-variant-numeric: tabular-nums;
-            font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace;
-        }
-        .session-item .session-delete {
-            width: 28px; height: 28px; border-radius: 50%; border: none; background: transparent;
-            color: var(--text-muted); cursor: pointer; font-size: 1rem; display: flex;
-            align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0;
-        }
+        .session-item .session-duration { font-weight: 700; color: var(--primary); font-size: 0.9rem; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace; }
+        .session-item .session-delete { width: 28px; height: 28px; border-radius: 50%; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
         .session-item .session-delete:hover { background: #fef2f2; color: var(--danger); }
         .no-sessions { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .no-sessions .icon { font-size: 2rem; opacity: 0.5; }
-
-        .history-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            box-shadow: var(--shadow);
-        }
+        .history-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 18px 20px; box-shadow: var(--shadow); }
         .history-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-        .history-list { display: flex; flex-direction: column; gap: 6px; }
-        .history-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 14px; border-radius: 10px; background: #fafbfc; font-size: 0.85rem;
-        }
-        .history-item.today { background: var(--primary-light); border: 1px solid #dde3ff; }
-        .history-item .history-date { font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 6px; }
-        .history-item .history-date .day-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
-        .history-item .history-total {
-            font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums;
-            font-family: 'SF Mono', 'JetBrains Mono', 'Consolas', 'PingFang SC', monospace;
-        }
-        .history-bar-wrapper { flex: 1; height: 6px; background: #eef1f5; border-radius: 3px; margin: 0 12px; overflow: hidden; max-width: 100px; }
-        .history-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #c4d0ff, var(--primary)); transition: width 0.5s ease-out; }
-        .clear-history-btn {
-            margin-top: 12px; padding: 8px 16px; border-radius: 18px; border: 1px solid #fecaca;
-            background: #fff; color: var(--text-muted); font-size: 0.75rem; cursor: pointer;
-            display: block; margin-left: auto; transition: var(--transition);
-        }
-        .clear-history-btn:hover { background: #fef2f2; color: var(--danger); border-color: var(--danger); }
-
-        .toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-120px);
-            background: #1f2937; color: #fff; padding: 12px 24px; border-radius: 25px;
-            font-weight: 600; font-size: 0.9rem; z-index: 1000; letter-spacing: 0.02em;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-            pointer-events: none;
-        }
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-120px); background: #1f2937; color: #fff; padding: 12px 24px; border-radius: 25px; font-weight: 600; font-size: 0.9rem; z-index: 1000; letter-spacing: 0.02em; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1); pointer-events: none; }
         .toast.show { transform: translateX(-50%) translateY(0); }
         .toast.success { background: #059669; }
-
-        .tasks-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            box-shadow: var(--shadow);
-        }
+        .tasks-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 18px 20px; box-shadow: var(--shadow); }
         .tasks-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .task-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
-        .task-input {
-            flex: 1; min-width: 0; padding: 9px 12px; border: 1.5px solid var(--border);
-            border-radius: 12px; font-size: 0.85rem; background: #fafbfc; color: var(--text); transition: var(--transition);
-        }
-        .task-input:focus {
-            outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1); background: #fff;
-        }
-        .btn-add-task {
-            padding: 9px 16px; border-radius: 12px; border: none; background: var(--primary);
-            color: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: var(--transition);
-        }
+        .task-input { flex: 1; min-width: 0; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 0.85rem; background: #fafbfc; color: var(--text); transition: var(--transition); }
+        .task-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1); background: #fff; }
+        .btn-add-task { padding: 9px 16px; border-radius: 12px; border: none; background: var(--primary); color: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: var(--transition); }
         .btn-add-task:active { transform: scale(0.95); }
-        .task-item {
-            display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fafbfc;
-            border-radius: 10px; margin-bottom: 6px; font-size: 0.85rem; animation: slide-in 0.2s ease-out;
-        }
+        .task-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fafbfc; border-radius: 10px; margin-bottom: 6px; font-size: 0.85rem; animation: slide-in 0.2s ease-out; }
         .task-item:last-child { margin-bottom: 0; }
-        .task-checkbox {
-            width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border);
-            appearance: none; -webkit-appearance: none; cursor: pointer; position: relative; flex-shrink: 0; transition: var(--transition);
-        }
+        .task-checkbox { width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border); appearance: none; -webkit-appearance: none; cursor: pointer; position: relative; flex-shrink: 0; transition: var(--transition); }
         .task-checkbox:checked { background: var(--primary); border-color: var(--primary); }
-        .task-checkbox:checked::after {
-            content: ''; position: absolute; top: 2px; left: 5px; width: 6px; height: 10px;
-            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
-        }
+        .task-checkbox:checked::after { content: ''; position: absolute; top: 2px; left: 5px; width: 6px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
         .task-text { flex: 1; color: var(--text); word-break: break-all; }
         .task-deadline { font-size: 0.7rem; color: var(--text-muted); margin-left: 8px; white-space: nowrap; flex-shrink: 0; }
         .task-item.completed .task-text { text-decoration: line-through; color: var(--text-muted); }
-        .task-delete {
-            width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent;
-            color: var(--text-muted); cursor: pointer; font-size: 1rem; display: flex; align-items: center;
-            justify-content: center; transition: var(--transition); flex-shrink: 0;
-        }
+        .task-delete { width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
         .task-delete:hover { background: #fef2f2; color: var(--danger); }
         .no-tasks { text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 12px 0; }
-
-        .tab-nav {
-            display: flex; background: var(--card-bg); border-radius: var(--radius-lg); padding: 4px;
-            box-shadow: var(--shadow-sm); margin-bottom: 0;
-        }
-        .tab-btn {
-            flex: 1; padding: 10px 12px; border: none; background: transparent; font-size: 0.85rem;
-            font-weight: 600; color: var(--text-secondary); border-radius: var(--radius); cursor: pointer; transition: var(--transition);
-        }
-        .tab-btn.active {
-            background: var(--primary); color: #fff; box-shadow: 0 2px 6px rgba(74,108,247,0.2);
-        }
-
+        .tab-nav { display: flex; background: var(--card-bg); border-radius: var(--radius-lg); padding: 4px; box-shadow: var(--shadow-sm); margin-bottom: 0; }
+        .tab-btn { flex: 1; padding: 10px 12px; border: none; background: transparent; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); border-radius: var(--radius); cursor: pointer; transition: var(--transition); }
+        .tab-btn.active { background: var(--primary); color: #fff; box-shadow: 0 2px 6px rgba(74,108,247,0.2); }
         .page { display: none; flex-direction: column; gap: 16px; }
         .page.active { display: flex; }
-
         .chart-container { margin-top: 12px; }
-        .chart-bars {
-            display: flex; align-items: flex-end; justify-content: space-around;
-            height: 160px; min-height: 160px; padding: 0 8px 12px; border-bottom: 2px solid var(--border);
-        }
-        .chart-bar {
-            flex: 1; max-width: 40px; background: var(--primary); border-radius: 8px 8px 0 0;
-            margin: 0 6px; transition: height 0.4s ease; position: relative; min-height: 4px;
-        }
-        .chart-bar span {
-            position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
-            font-size: 0.6rem; color: var(--text-secondary); white-space: nowrap;
-        }
-        .chart-labels {
-            display: flex; justify-content: space-around; font-size: 0.65rem; color: var(--text-muted);
-            margin-top: 20px; min-height: 20px;
-        }
+        .chart-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 160px; min-height: 160px; padding: 0 8px 12px; border-bottom: 2px solid var(--border); }
+        .chart-bar { flex: 1; max-width: 40px; background: var(--primary); border-radius: 8px 8px 0 0; margin: 0 6px; transition: height 0.4s ease; position: relative; min-height: 4px; }
+        .chart-bar span { position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: var(--text-secondary); white-space: nowrap; }
+        .chart-labels { display: flex; justify-content: space-around; font-size: 0.65rem; color: var(--text-muted); margin-top: 20px; min-height: 20px; }
         .chart-labels span { flex: 1; text-align: center; max-width: 40px; margin: 0 6px; }
-
-        .task-input[type="datetime-local"] {
-            background: #ffffff;
-            color: var(--text);
-            -webkit-text-fill-color: var(--text);
-        }
-        .task-input[type="datetime-local"]::-webkit-datetime-edit { color: var(--text); }
-        .task-input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper { background: #ffffff; }
-        .task-input[type="datetime-local"]::-webkit-calendar-picker-indicator { filter: invert(0.5); }
-
+        .task-input[type="datetime-local"] { background: #ffffff; color: var(--text); -webkit-text-fill-color: var(--text); }
+        .clear-history-btn { margin-top: 12px; padding: 8px 16px; border-radius: 18px; border: 1px solid #fecaca; background: #fff; color: var(--text-muted); font-size: 0.75rem; cursor: pointer; display: block; margin-left: auto; transition: var(--transition); }
+        .clear-history-btn:hover { background: #fef2f2; color: var(--danger); border-color: var(--danger); }
         @media (max-width: 380px) {
             .daily-total-time { font-size: 2.4rem; }
             .timer-time-display { font-size: 2rem; }
@@ -584,8 +196,7 @@
                 <div class="timer-circle-wrapper" id="timerCircleWrapper">
                     <svg class="timer-circle-svg" viewBox="0 0 200 200">
                         <circle class="timer-circle-bg" cx="100" cy="100" r="88"/>
-                        <circle class="timer-circle-progress" id="timerProgress" cx="100" cy="100" r="88"
-                        stroke-dasharray="552.92" stroke-dashoffset="0"/>
+                        <circle class="timer-circle-progress" id="timerProgress" cx="100" cy="100" r="88" stroke-dasharray="552.92" stroke-dashoffset="0"/>
                     </svg>
                     <div class="timer-time-display" id="timerTimeDisplay">25:00</div>
                 </div>
@@ -600,10 +211,7 @@
             <div class="sessions-card" id="sessionsCard">
                 <h3>📋 今日专注记录 <span class="count-badge" id="sessionCountBadge">0</span></h3>
                 <div id="sessionsList">
-                    <div class="no-sessions">
-                        <span class="icon">☕</span><span>还没有专注记录</span>
-                        <span style="font-size:0.75rem;">开始你的第一个专注时段吧！</span>
-                    </div>
+                    <div class="no-sessions"><span class="icon">☕</span><span>还没有专注记录</span><span style="font-size:0.75rem;">开始你的第一个专注时段吧！</span></div>
                 </div>
             </div>
         </div>
@@ -618,7 +226,7 @@
                 <div class="task-list" id="dailyTaskList"></div>
             </div>
             <div class="tasks-card" id="phaseTasksCard">
-                <h3>🎯 阶段任务区</h3>
+                <h3>🎯 阶段任务区 <span style="font-size:0.7rem; color:var(--text-muted);">(长按拖动可排序)</span></h3>
                 <div class="task-input-row">
                     <input type="text" class="task-input" id="phaseTaskInput" placeholder="任务名称..." maxlength="40" style="flex:1.2;">
                     <input type="datetime-local" class="task-input" id="phaseDeadlineInput" style="flex:0.8;">
@@ -643,912 +251,943 @@
 
     <div class="toast" id="toast"></div>
 
+    <!-- 专注计时核心脚本 -->
     <script>
-        (function() {
-            // DOM Elements
-            const $dateDisplay = document.getElementById('dateDisplay');
-            const $dailyTotalTime = document.getElementById('dailyTotalTime');
-            const $completedSessions = document.getElementById('completedSessions');
-            const $dailyTotalCard = document.getElementById('dailyTotalCard');
-            const $timerCard = document.getElementById('timerCard');
-            const $statusBadge = document.getElementById('statusBadge');
-            const $modeToggle = document.getElementById('modeToggle');
-            const $presetButtons = document.getElementById('presetButtons');
-            const $customTimeRow = document.getElementById('customTimeRow');
-            const $customMinutes = document.getElementById('customMinutes');
-            const $timerProgress = document.getElementById('timerProgress');
-            const $timerTimeDisplay = document.getElementById('timerTimeDisplay');
-            const $btnStart = document.getElementById('btnStart');
-            const $btnPause = document.getElementById('btnPause');
-            const $btnStop = document.getElementById('btnStop');
-            const $btnReset = document.getElementById('btnReset');
-            const $sessionsList = document.getElementById('sessionsList');
-            const $sessionCountBadge = document.getElementById('sessionCountBadge');
-            const $clearHistoryBtn = document.getElementById('clearHistoryBtn');
-            const $toast = document.getElementById('toast');
-            const $timerCircleWrapper = document.getElementById('timerCircleWrapper');
+    (function() {
+        const $dateDisplay = document.getElementById('dateDisplay');
+        const $dailyTotalTime = document.getElementById('dailyTotalTime');
+        const $completedSessions = document.getElementById('completedSessions');
+        const $timerCard = document.getElementById('timerCard');
+        const $statusBadge = document.getElementById('statusBadge');
+        const $modeToggle = document.getElementById('modeToggle');
+        const $presetButtons = document.getElementById('presetButtons');
+        const $customTimeRow = document.getElementById('customTimeRow');
+        const $customMinutes = document.getElementById('customMinutes');
+        const $timerProgress = document.getElementById('timerProgress');
+        const $timerTimeDisplay = document.getElementById('timerTimeDisplay');
+        const $btnStart = document.getElementById('btnStart');
+        const $btnPause = document.getElementById('btnPause');
+        const $btnStop = document.getElementById('btnStop');
+        const $btnReset = document.getElementById('btnReset');
+        const $sessionsList = document.getElementById('sessionsList');
+        const $sessionCountBadge = document.getElementById('sessionCountBadge');
+        const $clearHistoryBtn = document.getElementById('clearHistoryBtn');
+        const $toast = document.getElementById('toast');
 
-            const CIRCUMFERENCE = 2 * Math.PI * 88;
-            $timerProgress.style.strokeDasharray = CIRCUMFERENCE;
-            $timerProgress.style.strokeDashoffset = '0';
+        const CIRCUMFERENCE = 2 * Math.PI * 88;
+        $timerProgress.style.strokeDasharray = CIRCUMFERENCE;
+        $timerProgress.style.strokeDashoffset = '0';
 
-            let timerMode = 'countdown';
-            let presetMinutes = 25;
-            let timerStatus = 'idle';
-            let targetSeconds = 25 * 60;
-            let timerStartTime = null;
-            let elapsedBeforePause = 0;
-            let timerIntervalId = null;
-            let completedToastTimeout = null;
+        let timerMode = 'countdown';
+        let presetMinutes = 25;
+        let timerStatus = 'idle';
+        let targetSeconds = 25 * 60;
+        let timerStartTime = null;
+        let elapsedBeforePause = 0;
+        let timerIntervalId = null;
+        let completedToastTimeout = null;
 
-            const STORAGE_KEY = 'daily_focus_data_v2';
-            const TIMER_STATE_KEY = 'daily_focus_timer_state_v2';
+        const STORAGE_KEY = 'daily_focus_data_v2';
+        const TIMER_STATE_KEY = 'daily_focus_timer_state_v2';
 
-            function loadFocusData() {
-                try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; }
-            }
-            function saveFocusData(data) {
-                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { showToast('存储空间不足，请清理历史记录', ''); }
-            }
-            function getTodayKey() {
-                const now = new Date();
-                return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-            }
-            function getTodaySessions() {
-                const data = loadFocusData();
-                const todayKey = getTodayKey();
-                return data[todayKey] ? [...data[todayKey].sessions] : [];
-            }
-            function addSessionToToday(session) {
-                const data = loadFocusData();
-                const todayKey = getTodayKey();
-                if (!data[todayKey]) data[todayKey] = { sessions: [] };
-                data[todayKey].sessions.push(session);
+        function loadFocusData() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; }
+        }
+        function saveFocusData(data) {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { showToast('存储空间不足，请清理历史记录', ''); }
+        }
+        function getTodayKey() {
+            const now = new Date();
+            return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+        }
+        function getTodaySessions() {
+            const data = loadFocusData();
+            const todayKey = getTodayKey();
+            return data[todayKey] ? [...data[todayKey].sessions] : [];
+        }
+        function addSessionToToday(session) {
+            const data = loadFocusData();
+            const todayKey = getTodayKey();
+            if (!data[todayKey]) data[todayKey] = { sessions: [] };
+            data[todayKey].sessions.push(session);
+            saveFocusData(data);
+        }
+        function removeSessionFromToday(index) {
+            const data = loadFocusData();
+            const todayKey = getTodayKey();
+            if (data[todayKey] && data[todayKey].sessions) {
+                data[todayKey].sessions.splice(index, 1);
+                if (data[todayKey].sessions.length === 0) delete data[todayKey];
                 saveFocusData(data);
             }
-            function removeSessionFromToday(index) {
-                const data = loadFocusData();
-                const todayKey = getTodayKey();
-                if (data[todayKey] && data[todayKey].sessions) {
-                    data[todayKey].sessions.splice(index, 1);
-                    if (data[todayKey].sessions.length === 0) delete data[todayKey];
-                    saveFocusData(data);
+        }
+        function getRecentHistory(days = 7) {
+            const data = loadFocusData();
+            const result = [];
+            const now = new Date();
+            for (let i = 0; i < days; i++) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i);
+                const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+                const sessions = data[key] ? data[key].sessions : [];
+                const totalSeconds = sessions.reduce((sum, s) => sum + (s.duration || 0), 0);
+                result.push({ key, date: d, sessions, totalSeconds, isToday: i === 0 });
+            }
+            return result;
+        }
+        function clearAllHistory() {
+            saveFocusData({});
+            clearTimerState();
+            renderAll();
+            showToast('历史记录已清除', 'success');
+        }
+
+        function saveTimerState() {
+            if (timerStatus === 'idle') { clearTimerState(); return; }
+            const state = { timerMode, presetMinutes, timerStatus, targetSeconds, elapsedBeforePause, timerStartTime, savedAt: Date.now() };
+            try { localStorage.setItem(TIMER_STATE_KEY, JSON.stringify(state)); } catch (e) {}
+        }
+        function clearTimerState() { try { localStorage.removeItem(TIMER_STATE_KEY); } catch (e) {} }
+        function loadTimerState() {
+            try {
+                const raw = localStorage.getItem(TIMER_STATE_KEY);
+                if (!raw) return null;
+                const state = JSON.parse(raw);
+                if (Date.now() - state.savedAt > 24*60*60*1000) { clearTimerState(); return null; }
+                const stateDate = new Date(state.savedAt);
+                const today = new Date();
+                if (stateDate.getDate() !== today.getDate() || stateDate.getMonth() !== today.getMonth() || stateDate.getFullYear() !== today.getFullYear()) {
+                    clearTimerState(); return null;
                 }
-            }
-            function getRecentHistory(days = 7) {
-                const data = loadFocusData();
-                const result = [];
-                const now = new Date();
-                for (let i = 0; i < days; i++) {
-                    const d = new Date(now);
-                    d.setDate(d.getDate() - i);
-                    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-                    const sessions = data[key] ? data[key].sessions : [];
-                    const totalSeconds = sessions.reduce((sum, s) => sum + (s.duration || 0), 0);
-                    result.push({ key, date: d, sessions, totalSeconds, isToday: i === 0 });
-                }
-                return result;
-            }
-            function clearAllHistory() {
-                saveFocusData({});
-                clearTimerState();
-                renderAll();
-                showToast('历史记录已清除', 'success');
-            }
+                return state;
+            } catch (e) { return null; }
+        }
 
-            function saveTimerState() {
-                if (timerStatus === 'idle') { clearTimerState(); return; }
-                const state = { timerMode, presetMinutes, timerStatus, targetSeconds, elapsedBeforePause, timerStartTime, savedAt: Date.now() };
-                try { localStorage.setItem(TIMER_STATE_KEY, JSON.stringify(state)); } catch (e) {}
-            }
-            function clearTimerState() { try { localStorage.removeItem(TIMER_STATE_KEY); } catch (e) {} }
-            function loadTimerState() {
-                try {
-                    const raw = localStorage.getItem(TIMER_STATE_KEY);
-                    if (!raw) return null;
-                    const state = JSON.parse(raw);
-                    if (Date.now() - state.savedAt > 24*60*60*1000) { clearTimerState(); return null; }
-                    const stateDate = new Date(state.savedAt);
-                    const today = new Date();
-                    if (stateDate.getDate() !== today.getDate() || stateDate.getMonth() !== today.getMonth() || stateDate.getFullYear() !== today.getFullYear()) {
-                        clearTimerState(); return null;
-                    }
-                    return state;
-                } catch (e) { return null; }
-            }
+        function formatTimeHHMMSS(totalSeconds) {
+            const secs = Math.max(0, Math.floor(totalSeconds));
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            const s = secs % 60;
+            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+        function formatTimeMMSS(totalSeconds) {
+            const secs = Math.max(0, Math.floor(totalSeconds));
+            return `${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')}`;
+        }
+        function formatTimeCompact(totalSeconds) {
+            const secs = Math.max(0, Math.floor(totalSeconds));
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            const s = secs % 60;
+            if (h > 0) return `${h}小时${m}分${s}秒`;
+            if (m > 0) return `${m}分${s}秒`;
+            return `${s}秒`;
+        }
+        function formatTimeShort(totalSeconds) {
+            const secs = Math.max(0, Math.floor(totalSeconds));
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            if (h > 0) return `${h}h${m}m`;
+            if (m > 0) return `${m}m`;
+            return `${secs}s`;
+        }
+        function getNowTimeString() {
+            const now = new Date();
+            return `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+        }
+        function getDateDisplayString() {
+            const now = new Date();
+            const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            return `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekdays[now.getDay()]}`;
+        }
+        function showToast(message, type = '') {
+            if (completedToastTimeout) clearTimeout(completedToastTimeout);
+            $toast.textContent = message;
+            $toast.className = 'toast ' + type + ' show';
+            completedToastTimeout = setTimeout(() => $toast.classList.remove('show'), 2200);
+        }
+        function playCompletionSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                [523.25, 659.25, 783.99].forEach((freq, i) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0.18, audioCtx.currentTime + i * 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.15 + 0.4);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + i * 0.15);
+                    osc.stop(audioCtx.currentTime + i * 0.15 + 0.4);
+                });
+            } catch (e) {}
+        }
+        function vibrateDevice() {
+            if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+        }
 
-            function formatTimeHHMMSS(totalSeconds) {
-                const secs = Math.max(0, Math.floor(totalSeconds));
-                const h = Math.floor(secs / 3600);
-                const m = Math.floor((secs % 3600) / 60);
-                const s = secs % 60;
-                return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        function getCurrentElapsedSeconds() {
+            if (timerStatus === 'idle') return timerMode === 'countdown' ? targetSeconds : 0;
+            if (timerStatus === 'paused') return elapsedBeforePause;
+            return elapsedBeforePause + (Date.now() - timerStartTime) / 1000;
+        }
+        function getDisplaySeconds() {
+            const elapsed = getCurrentElapsedSeconds();
+            return timerMode === 'countdown' ? Math.max(0, targetSeconds - elapsed) : elapsed;
+        }
+        function updateTimerDisplay() {
+            const displaySeconds = getDisplaySeconds();
+            if (timerMode === 'countdown') {
+                $timerTimeDisplay.textContent = formatTimeMMSS(displaySeconds);
+            } else {
+                $timerTimeDisplay.textContent = displaySeconds >= 3600 ? formatTimeHHMMSS(displaySeconds) : formatTimeMMSS(displaySeconds);
             }
-            function formatTimeMMSS(totalSeconds) {
-                const secs = Math.max(0, Math.floor(totalSeconds));
-                return `${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')}`;
-            }
-            function formatTimeCompact(totalSeconds) {
-                const secs = Math.max(0, Math.floor(totalSeconds));
-                const h = Math.floor(secs / 3600);
-                const m = Math.floor((secs % 3600) / 60);
-                const s = secs % 60;
-                if (h > 0) return `${h}小时${m}分${s}秒`;
-                if (m > 0) return `${m}分${s}秒`;
-                return `${s}秒`;
-            }
-            function formatTimeShort(totalSeconds) {
-                const secs = Math.max(0, Math.floor(totalSeconds));
-                const h = Math.floor(secs / 3600);
-                const m = Math.floor((secs % 3600) / 60);
-                if (h > 0) return `${h}h${m}m`;
-                if (m > 0) return `${m}m`;
-                return `${secs}s`;
-            }
-            function getNowTimeString() {
-                const now = new Date();
-                return `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
-            }
-            function getDateDisplayString() {
-                const now = new Date();
-                const weekdays = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-                return `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekdays[now.getDay()]}`;
-            }
-            function showToast(message, type = '') {
-                if (completedToastTimeout) clearTimeout(completedToastTimeout);
-                $toast.textContent = message;
-                $toast.className = 'toast ' + type + ' show';
-                completedToastTimeout = setTimeout(() => $toast.classList.remove('show'), 2200);
-            }
-            function playCompletionSound() {
-                try {
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    [523.25, 659.25, 783.99].forEach((freq, i) => {
-                        const osc = audioCtx.createOscillator();
-                        const gain = audioCtx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.value = freq;
-                        gain.gain.setValueAtTime(0.18, audioCtx.currentTime + i * 0.15);
-                        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.15 + 0.4);
-                        osc.connect(gain);
-                        gain.connect(audioCtx.destination);
-                        osc.start(audioCtx.currentTime + i * 0.15);
-                        osc.stop(audioCtx.currentTime + i * 0.15 + 0.4);
-                    });
-                } catch (e) {}
-            }
-            function vibrateDevice() {
-                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
-            }
-
-            function getCurrentElapsedSeconds() {
-                if (timerStatus === 'idle') return timerMode === 'countdown' ? targetSeconds : 0;
-                if (timerStatus === 'paused') return elapsedBeforePause;
-                return elapsedBeforePause + (Date.now() - timerStartTime) / 1000;
-            }
-            function getDisplaySeconds() {
+            updateProgressRing();
+            updateDisplayColorClasses();
+        }
+        function updateProgressRing() {
+            if (timerMode === 'countdown') {
                 const elapsed = getCurrentElapsedSeconds();
-                return timerMode === 'countdown' ? Math.max(0, targetSeconds - elapsed) : elapsed;
+                const progress = Math.min(1, Math.max(0, elapsed / targetSeconds));
+                $timerProgress.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+            } else {
+                const elapsed = getCurrentElapsedSeconds();
+                const progress = (elapsed % (30*60)) / (30*60);
+                $timerProgress.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
             }
-            function updateTimerDisplay() {
-                const displaySeconds = getDisplaySeconds();
-                if (timerMode === 'countdown') {
-                    $timerTimeDisplay.textContent = formatTimeMMSS(displaySeconds);
-                } else {
-                    $timerTimeDisplay.textContent = displaySeconds >= 3600 ? formatTimeHHMMSS(displaySeconds) : formatTimeMMSS(displaySeconds);
+        }
+        function updateDisplayColorClasses() {
+            const displaySeconds = getDisplaySeconds();
+            $timerProgress.classList.remove('warning', 'danger', 'completed-state');
+            $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
+            $dailyTotalTime.classList.remove('active-focus');
+            if (timerMode === 'countdown' && timerStatus === 'running') {
+                if (displaySeconds <= 10 && displaySeconds > 0) {
+                    $timerProgress.classList.add('danger');
+                    $timerTimeDisplay.classList.add('danger-time');
+                } else if (displaySeconds <= 60 && displaySeconds > 0) {
+                    $timerProgress.classList.add('warning');
+                    $timerTimeDisplay.classList.add('warning-time');
                 }
-                updateProgressRing();
-                updateDisplayColorClasses();
             }
-            function updateProgressRing() {
-                if (timerMode === 'countdown') {
-                    const elapsed = getCurrentElapsedSeconds();
-                    const progress = Math.min(1, Math.max(0, elapsed / targetSeconds));
-                    $timerProgress.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
-                } else {
-                    const elapsed = getCurrentElapsedSeconds();
-                    const progress = (elapsed % (30*60)) / (30*60);
-                    $timerProgress.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
-                }
+            if (timerStatus === 'running') $dailyTotalTime.classList.add('active-focus');
+        }
+        function checkCountdownComplete() {
+            if (timerMode === 'countdown' && timerStatus === 'running' && getDisplaySeconds() <= 0) completeTimer();
+        }
+        function completeTimer() {
+            stopTimerInterval();
+            const nowStr = getNowTimeString();
+            const sessionDuration = targetSeconds;
+            const endTime = new Date();
+            const startTime = new Date(endTime.getTime() - sessionDuration * 1000);
+            const startStr = `${String(startTime.getHours()).padStart(2,'0')}:${String(startTime.getMinutes()).padStart(2,'0')}:${String(startTime.getSeconds()).padStart(2,'0')}`;
+            addSessionToToday({ startTime: startStr, endTime: nowStr, duration: sessionDuration, mode: 'countdown', targetMinutes: presetMinutes });
+            timerStatus = 'idle';
+            elapsedBeforePause = 0;
+            timerStartTime = null;
+            clearTimerState();
+            $timerProgress.classList.add('completed-state');
+            $timerTimeDisplay.classList.add('completed-time');
+            $timerTimeDisplay.textContent = '00:00';
+            $timerCard.classList.add('completed-flash');
+            setTimeout(() => $timerCard.classList.remove('completed-flash'), 700);
+            playCompletionSound();
+            vibrateDevice();
+            showToast(`🎉 太棒了！完成 ${presetMinutes} 分钟专注`, 'success');
+            updateTimerDisplay();
+            updateControlButtons();
+            updateStatusBadge();
+            renderAll();
+            setTimeout(() => {
+                $timerProgress.classList.remove('completed-state');
+                $timerTimeDisplay.classList.remove('completed-time');
+                resetToPreset();
+                renderAll();
+            }, 2000);
+        }
+        function startTimer() {
+            if (timerStatus === 'running') return;
+            if (timerStatus === 'paused') {
+                timerStartTime = Date.now();
+                timerStatus = 'running';
+            } else {
+                if (timerMode === 'countdown') targetSeconds = presetMinutes * 60;
+                elapsedBeforePause = 0;
+                timerStartTime = Date.now();
+                timerStatus = 'running';
             }
-            function updateDisplayColorClasses() {
-                const displaySeconds = getDisplaySeconds();
-                $timerProgress.classList.remove('warning', 'danger', 'completed-state');
-                $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
-                $dailyTotalTime.classList.remove('active-focus');
-                if (timerMode === 'countdown' && timerStatus === 'running') {
-                    if (displaySeconds <= 10 && displaySeconds > 0) {
-                        $timerProgress.classList.add('danger');
-                        $timerTimeDisplay.classList.add('danger-time');
-                    } else if (displaySeconds <= 60 && displaySeconds > 0) {
-                        $timerProgress.classList.add('warning');
-                        $timerTimeDisplay.classList.add('warning-time');
-                    }
-                }
-                if (timerStatus === 'running') $dailyTotalTime.classList.add('active-focus');
-            }
-            function checkCountdownComplete() {
-                if (timerMode === 'countdown' && timerStatus === 'running' && getDisplaySeconds() <= 0) completeTimer();
-            }
-            function completeTimer() {
-                stopTimerInterval();
-                const nowStr = getNowTimeString();
-                const sessionDuration = targetSeconds;
+            startTimerInterval();
+            updateControlButtons();
+            updateStatusBadge();
+            updateTimerDisplay();
+            saveTimerState();
+            $timerCard.classList.add('running');
+        }
+        function pauseTimer() {
+            if (timerStatus !== 'running') return;
+            elapsedBeforePause = getCurrentElapsedSeconds();
+            timerStartTime = null;
+            timerStatus = 'paused';
+            stopTimerInterval();
+            updateControlButtons();
+            updateStatusBadge();
+            updateTimerDisplay();
+            saveTimerState();
+            $timerCard.classList.remove('running');
+            $dailyTotalTime.classList.remove('active-focus');
+        }
+        function stopTimer() {
+            if (timerStatus === 'idle') return;
+            stopTimerInterval();
+            const elapsed = getCurrentElapsedSeconds();
+            const nowStr = getNowTimeString();
+            let sessionDuration = timerMode === 'countdown' ? Math.min(elapsed, targetSeconds) : Math.floor(elapsed);
+            if (sessionDuration >= 10) {
                 const endTime = new Date();
                 const startTime = new Date(endTime.getTime() - sessionDuration * 1000);
                 const startStr = `${String(startTime.getHours()).padStart(2,'0')}:${String(startTime.getMinutes()).padStart(2,'0')}:${String(startTime.getSeconds()).padStart(2,'0')}`;
-                addSessionToToday({ startTime: startStr, endTime: nowStr, duration: sessionDuration, mode: 'countdown', targetMinutes: presetMinutes });
-                timerStatus = 'idle';
-                elapsedBeforePause = 0;
-                timerStartTime = null;
-                clearTimerState();
-                $timerProgress.classList.add('completed-state');
-                $timerTimeDisplay.classList.add('completed-time');
-                $timerTimeDisplay.textContent = '00:00';
-                $timerCard.classList.add('completed-flash');
-                setTimeout(() => $timerCard.classList.remove('completed-flash'), 700);
-                playCompletionSound();
-                vibrateDevice();
-                showToast(`🎉 太棒了！完成 ${presetMinutes} 分钟专注`, 'success');
-                updateTimerDisplay();
-                updateControlButtons();
-                updateStatusBadge();
-                renderAll();
-                setTimeout(() => {
-                    $timerProgress.classList.remove('completed-state');
-                    $timerTimeDisplay.classList.remove('completed-time');
-                    resetToPreset();
-                    renderAll();
-                }, 2000);
+                addSessionToToday({ startTime: startStr, endTime: nowStr, duration: sessionDuration, mode: timerMode, targetMinutes: timerMode === 'countdown' ? presetMinutes : null });
+                showToast(`✅ 已记录 ${formatTimeCompact(sessionDuration)} 专注时间`, 'success');
+            } else if (sessionDuration > 0) {
+                showToast('专注时间太短（少于10秒），未记录', '');
             }
-            function startTimer() {
-                if (timerStatus === 'running') return;
-                if (timerStatus === 'paused') {
-                    timerStartTime = Date.now();
-                    timerStatus = 'running';
-                } else {
-                    if (timerMode === 'countdown') targetSeconds = presetMinutes * 60;
-                    elapsedBeforePause = 0;
-                    timerStartTime = Date.now();
-                    timerStatus = 'running';
-                }
-                startTimerInterval();
-                updateControlButtons();
-                updateStatusBadge();
-                updateTimerDisplay();
-                saveTimerState();
-                $timerCard.classList.add('running');
-            }
-            function pauseTimer() {
-                if (timerStatus !== 'running') return;
-                elapsedBeforePause = getCurrentElapsedSeconds();
-                timerStartTime = null;
-                timerStatus = 'paused';
-                stopTimerInterval();
-                updateControlButtons();
-                updateStatusBadge();
-                updateTimerDisplay();
-                saveTimerState();
-                $timerCard.classList.remove('running');
-                $dailyTotalTime.classList.remove('active-focus');
-            }
-            function stopTimer() {
-                if (timerStatus === 'idle') return;
-                stopTimerInterval();
-                const elapsed = getCurrentElapsedSeconds();
-                const nowStr = getNowTimeString();
-                let sessionDuration = timerMode === 'countdown' ? Math.min(elapsed, targetSeconds) : Math.floor(elapsed);
-                if (sessionDuration >= 10) {
-                    const endTime = new Date();
-                    const startTime = new Date(endTime.getTime() - sessionDuration * 1000);
-                    const startStr = `${String(startTime.getHours()).padStart(2,'0')}:${String(startTime.getMinutes()).padStart(2,'0')}:${String(startTime.getSeconds()).padStart(2,'0')}`;
-                    addSessionToToday({ startTime: startStr, endTime: nowStr, duration: sessionDuration, mode: timerMode, targetMinutes: timerMode === 'countdown' ? presetMinutes : null });
-                    showToast(`✅ 已记录 ${formatTimeCompact(sessionDuration)} 专注时间`, 'success');
-                } else if (sessionDuration > 0) {
-                    showToast('专注时间太短（少于10秒），未记录', '');
-                }
-                timerStatus = 'idle';
-                elapsedBeforePause = 0;
-                timerStartTime = null;
-                clearTimerState();
-                $timerCard.classList.remove('running');
-                $dailyTotalTime.classList.remove('active-focus');
-                resetToPreset();
-                updateControlButtons();
-                updateStatusBadge();
-                updateTimerDisplay();
-                renderAll();
-            }
-            function resetToPreset() {
-                timerStatus = 'idle';
-                elapsedBeforePause = 0;
-                timerStartTime = null;
-                stopTimerInterval();
-                clearTimerState();
-                $timerCard.classList.remove('running');
-                $dailyTotalTime.classList.remove('active-focus');
-                $timerProgress.classList.remove('warning', 'danger', 'completed-state');
-                $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
-                if (timerMode === 'countdown') {
-                    targetSeconds = presetMinutes * 60;
-                    $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
-                    $timerProgress.style.strokeDashoffset = '0';
-                } else {
-                    $timerTimeDisplay.textContent = '00:00';
-                    $timerProgress.style.strokeDashoffset = '0';
-                }
-                updateControlButtons();
-                updateStatusBadge();
-            }
-            function startTimerInterval() {
-                stopTimerInterval();
-                timerIntervalId = setInterval(() => {
-                    updateTimerDisplay();
-                    checkCountdownComplete();
-                    updateDailyTotalDisplay();
-                }, 250);
-            }
-            function stopTimerInterval() {
-                if (timerIntervalId) { clearInterval(timerIntervalId); timerIntervalId = null; }
-            }
-            function updateControlButtons() {
-                switch (timerStatus) {
-                    case 'idle':
-                        $btnStart.disabled = false; $btnStart.textContent = '▶ 开始专注'; $btnStart.className = 'btn btn-start';
-                        $btnPause.disabled = true; $btnStop.disabled = true; $btnReset.disabled = false; break;
-                    case 'running':
-                        $btnStart.disabled = true; $btnPause.disabled = false; $btnPause.className = 'btn btn-pause';
-                        $btnStop.disabled = false; $btnReset.disabled = true; break;
-                    case 'paused':
-                        $btnStart.disabled = false; $btnStart.textContent = '▶ 继续';
-                        $btnPause.disabled = true; $btnStop.disabled = false; $btnReset.disabled = false; break;
-                }
-            }
-            function updateStatusBadge() {
-                $statusBadge.classList.remove('idle', 'running', 'paused');
-                switch (timerStatus) {
-                    case 'idle': $statusBadge.classList.add('idle'); $statusBadge.textContent = '⏸ 待开始'; break;
-                    case 'running': $statusBadge.classList.add('running'); $statusBadge.textContent = '🔵 专注中...'; break;
-                    case 'paused': $statusBadge.classList.add('paused'); $statusBadge.textContent = '⏸ 已暂停'; break;
-                }
-            }
-            function setTimerMode(mode) {
-                if (timerStatus !== 'idle') { showToast('请先结束当前计时再切换模式', ''); return; }
-                timerMode = mode;
-                if (mode === 'countdown') {
-                    $presetButtons.style.display = 'flex';
-                    $customTimeRow.style.display = 'flex';
-                    targetSeconds = presetMinutes * 60;
-                    $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
-                } else {
-                    $presetButtons.style.display = 'none';
-                    $customTimeRow.style.display = 'none';
-                    targetSeconds = 0;
-                    $timerTimeDisplay.textContent = '00:00';
-                }
-                $timerProgress.style.strokeDashoffset = '0';
-                $timerProgress.classList.remove('warning', 'danger', 'completed-state');
-                $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
-                updateModeToggleButtons();
-                updateControlButtons();
-                updateStatusBadge();
-                clearTimerState();
-            }
-            function updateModeToggleButtons() {
-                document.querySelectorAll('#modeToggle button').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.mode === timerMode);
-                });
-            }
-            function setPreset(minutes) {
-                if (timerStatus !== 'idle') { showToast('请先结束当前计时再切换时间', ''); return; }
-                presetMinutes = minutes;
-                targetSeconds = minutes * 60;
+            timerStatus = 'idle';
+            elapsedBeforePause = 0;
+            timerStartTime = null;
+            clearTimerState();
+            $timerCard.classList.remove('running');
+            $dailyTotalTime.classList.remove('active-focus');
+            resetToPreset();
+            updateControlButtons();
+            updateStatusBadge();
+            updateTimerDisplay();
+            renderAll();
+        }
+        function resetToPreset() {
+            timerStatus = 'idle';
+            elapsedBeforePause = 0;
+            timerStartTime = null;
+            stopTimerInterval();
+            clearTimerState();
+            $timerCard.classList.remove('running');
+            $dailyTotalTime.classList.remove('active-focus');
+            $timerProgress.classList.remove('warning', 'danger', 'completed-state');
+            $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
+            if (timerMode === 'countdown') {
+                targetSeconds = presetMinutes * 60;
                 $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
                 $timerProgress.style.strokeDashoffset = '0';
-                $customMinutes.value = minutes;
-                updatePresetButtons();
-                clearTimerState();
+            } else {
+                $timerTimeDisplay.textContent = '00:00';
+                $timerProgress.style.strokeDashoffset = '0';
             }
-            function updatePresetButtons() {
-                document.querySelectorAll('#presetButtons .preset-btn').forEach(btn => {
-                    btn.classList.toggle('active-preset', parseInt(btn.dataset.minutes) === presetMinutes);
+            updateControlButtons();
+            updateStatusBadge();
+        }
+        function startTimerInterval() {
+            stopTimerInterval();
+            timerIntervalId = setInterval(() => {
+                updateTimerDisplay();
+                checkCountdownComplete();
+                updateDailyTotalDisplay();
+            }, 250);
+        }
+        function stopTimerInterval() {
+            if (timerIntervalId) { clearInterval(timerIntervalId); timerIntervalId = null; }
+        }
+        function updateControlButtons() {
+            switch (timerStatus) {
+                case 'idle':
+                    $btnStart.disabled = false; $btnStart.textContent = '▶ 开始专注'; $btnStart.className = 'btn btn-start';
+                    $btnPause.disabled = true; $btnStop.disabled = true; $btnReset.disabled = false; break;
+                case 'running':
+                    $btnStart.disabled = true; $btnPause.disabled = false; $btnPause.className = 'btn btn-pause';
+                    $btnStop.disabled = false; $btnReset.disabled = true; break;
+                case 'paused':
+                    $btnStart.disabled = false; $btnStart.textContent = '▶ 继续';
+                    $btnPause.disabled = true; $btnStop.disabled = false; $btnReset.disabled = false; break;
+            }
+        }
+        function updateStatusBadge() {
+            $statusBadge.classList.remove('idle', 'running', 'paused');
+            switch (timerStatus) {
+                case 'idle': $statusBadge.classList.add('idle'); $statusBadge.textContent = '⏸ 待开始'; break;
+                case 'running': $statusBadge.classList.add('running'); $statusBadge.textContent = '🔵 专注中...'; break;
+                case 'paused': $statusBadge.classList.add('paused'); $statusBadge.textContent = '⏸ 已暂停'; break;
+            }
+        }
+        function setTimerMode(mode) {
+            if (timerStatus !== 'idle') { showToast('请先结束当前计时再切换模式', ''); return; }
+            timerMode = mode;
+            if (mode === 'countdown') {
+                $presetButtons.style.display = 'flex';
+                $customTimeRow.style.display = 'flex';
+                targetSeconds = presetMinutes * 60;
+                $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
+            } else {
+                $presetButtons.style.display = 'none';
+                $customTimeRow.style.display = 'none';
+                targetSeconds = 0;
+                $timerTimeDisplay.textContent = '00:00';
+            }
+            $timerProgress.style.strokeDashoffset = '0';
+            $timerProgress.classList.remove('warning', 'danger', 'completed-state');
+            $timerTimeDisplay.classList.remove('warning-time', 'danger-time', 'completed-time');
+            updateModeToggleButtons();
+            updateControlButtons();
+            updateStatusBadge();
+            clearTimerState();
+        }
+        function updateModeToggleButtons() {
+            document.querySelectorAll('#modeToggle button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === timerMode);
+            });
+        }
+        function setPreset(minutes) {
+            if (timerStatus !== 'idle') { showToast('请先结束当前计时再切换时间', ''); return; }
+            presetMinutes = minutes;
+            targetSeconds = minutes * 60;
+            $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
+            $timerProgress.style.strokeDashoffset = '0';
+            $customMinutes.value = minutes;
+            updatePresetButtons();
+            clearTimerState();
+        }
+        function updatePresetButtons() {
+            document.querySelectorAll('#presetButtons .preset-btn').forEach(btn => {
+                btn.classList.toggle('active-preset', parseInt(btn.dataset.minutes) === presetMinutes);
+            });
+        }
+        function getTodayTotalFocusSeconds() {
+            const sessions = getTodaySessions();
+            let total = sessions.reduce((sum, s) => sum + (s.duration || 0), 0);
+            if (timerStatus === 'running') total += getCurrentElapsedSeconds();
+            else if (timerStatus === 'paused') total += elapsedBeforePause;
+            return total;
+        }
+        function updateDailyTotalDisplay() {
+            const totalSeconds = getTodayTotalFocusSeconds();
+            $dailyTotalTime.textContent = formatTimeHHMMSS(totalSeconds);
+            const sessions = getTodaySessions();
+            $completedSessions.textContent = sessions.length;
+            if (timerStatus === 'running') $dailyTotalTime.classList.add('active-focus');
+            else if (timerStatus === 'idle') $dailyTotalTime.classList.remove('active-focus');
+        }
+        function renderSessionsList() {
+            const sessions = getTodaySessions();
+            $sessionCountBadge.textContent = sessions.length;
+            if (sessions.length === 0) {
+                $sessionsList.innerHTML = `<div class="no-sessions"><span class="icon">☕</span><span>还没有专注记录</span><span style="font-size:0.75rem;">开始你的第一个专注时段吧！</span></div>`;
+                return;
+            }
+            $sessionsList.innerHTML = sessions.map((s, i) => {
+                const durationStr = formatTimeCompact(s.duration);
+                return `<div class="session-item" style="animation-delay:${i * 0.04}s">
+                    <div class="session-index">${i + 1}</div>
+                    <div class="session-info"><span class="session-time-range">${s.startTime} → ${s.endTime}</span></div>
+                    <span class="session-duration">${durationStr}</span>
+                    <button class="session-delete" data-index="${i}" title="删除此记录">×</button>
+                </div>`;
+            }).join('');
+            $sessionsList.querySelectorAll('.session-delete').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const index = parseInt(btn.dataset.index);
+                    removeSessionFromToday(index);
+                    renderAll();
+                    showToast('记录已删除', '');
                 });
-            }
-            function getTodayTotalFocusSeconds() {
-                const sessions = getTodaySessions();
-                let total = sessions.reduce((sum, s) => sum + (s.duration || 0), 0);
-                if (timerStatus === 'running') total += getCurrentElapsedSeconds();
-                else if (timerStatus === 'paused') total += elapsedBeforePause;
-                return total;
-            }
-            function updateDailyTotalDisplay() {
-                const totalSeconds = getTodayTotalFocusSeconds();
-                $dailyTotalTime.textContent = formatTimeHHMMSS(totalSeconds);
-                const sessions = getTodaySessions();
-                $completedSessions.textContent = sessions.length;
-                if (timerStatus === 'running') $dailyTotalTime.classList.add('active-focus');
-                else if (timerStatus === 'idle') $dailyTotalTime.classList.remove('active-focus');
-            }
-            function renderSessionsList() {
-                const sessions = getTodaySessions();
-                $sessionCountBadge.textContent = sessions.length;
-                if (sessions.length === 0) {
-                    $sessionsList.innerHTML = `<div class="no-sessions"><span class="icon">☕</span><span>还没有专注记录</span><span style="font-size:0.75rem;">开始你的第一个专注时段吧！</span></div>`;
+            });
+        }
+        function renderChart() {
+            const $chartBars = document.getElementById('chartBars');
+            const $chartLabels = document.getElementById('chartLabels');
+            if (!$chartBars || !$chartLabels) return;
+            try {
+                const history = getRecentHistory(7).reverse();
+                const maxSeconds = Math.max(1, ...history.map(h => h.totalSeconds));
+                if (maxSeconds <= 0) {
+                    $chartBars.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;">暂无专注记录</div>';
+                    $chartLabels.innerHTML = '';
                     return;
                 }
-                $sessionsList.innerHTML = sessions.map((s, i) => {
-                    const durationStr = formatTimeCompact(s.duration);
-                    return `<div class="session-item" style="animation-delay:${i * 0.04}s">
-                        <div class="session-index">${i + 1}</div>
-                        <div class="session-info"><span class="session-time-range">${s.startTime} → ${s.endTime}</span></div>
-                        <span class="session-duration">${durationStr}</span>
-                        <button class="session-delete" data-index="${i}" title="删除此记录">×</button>
-                    </div>`;
+                $chartBars.innerHTML = history.map(h => {
+                    const heightPercent = Math.round((h.totalSeconds / maxSeconds) * 100);
+                    const displayHeight = Math.max(4, heightPercent);
+                    const totalStr = formatTimeShort(h.totalSeconds);
+                    const dateStr = `${h.date.getMonth()+1}/${h.date.getDate()}`;
+                    return `<div class="chart-bar" style="height:${displayHeight}%;" title="${dateStr}: ${totalStr}"><span>${totalStr}</span></div>`;
                 }).join('');
-                $sessionsList.querySelectorAll('.session-delete').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const index = parseInt(btn.dataset.index);
-                        removeSessionFromToday(index);
-                        renderAll();
-                        showToast('记录已删除', '');
-                    });
-                });
+                $chartLabels.innerHTML = history.map(h => {
+                    const dateStr = `${h.date.getMonth()+1}/${h.date.getDate()}`;
+                    const dayLabel = h.isToday ? '今天' : ['周日','周一','周二','周三','周四','周五','周六'][h.date.getDay()];
+                    return `<span>${dayLabel}<br>${dateStr}</span>`;
+                }).join('');
+            } catch (e) {
+                $chartBars.innerHTML = '<div style="text-align:center;color:var(--text-muted);">统计加载失败</div>';
+                $chartLabels.innerHTML = '';
             }
-            function renderChart() {
-                const $chartBars = document.getElementById('chartBars');
-                const $chartLabels = document.getElementById('chartLabels');
-                if (!$chartBars || !$chartLabels) return;
-                try {
-                    const history = getRecentHistory(7).reverse();
-                    const maxSeconds = Math.max(1, ...history.map(h => h.totalSeconds));
-                    if (maxSeconds <= 0) {
-                        $chartBars.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;">暂无专注记录</div>';
-                        $chartLabels.innerHTML = '';
-                        return;
-                    }
-                    $chartBars.innerHTML = history.map(h => {
-                        const heightPercent = Math.round((h.totalSeconds / maxSeconds) * 100);
-                        const displayHeight = Math.max(4, heightPercent);
-                        const totalStr = formatTimeShort(h.totalSeconds);
-                        const dateStr = `${h.date.getMonth()+1}/${h.date.getDate()}`;
-                        return `<div class="chart-bar" style="height:${displayHeight}%;" title="${dateStr}: ${totalStr}"><span>${totalStr}</span></div>`;
-                    }).join('');
-                    $chartLabels.innerHTML = history.map(h => {
-                        const dateStr = `${h.date.getMonth()+1}/${h.date.getDate()}`;
-                        const dayLabel = h.isToday ? '今天' : ['周日','周一','周二','周三','周四','周五','周六'][h.date.getDay()];
-                        return `<span>${dayLabel}<br>${dateStr}</span>`;
-                    }).join('');
-                } catch (e) {
-                    $chartBars.innerHTML = '<div style="text-align:center;color:var(--text-muted);">统计加载失败</div>';
-                    $chartLabels.innerHTML = '';
-                }
+        }
+        function renderAll() {
+            $dateDisplay.textContent = getDateDisplayString();
+            updateDailyTotalDisplay();
+            updateTimerDisplay();
+            updateControlButtons();
+            updateStatusBadge();
+            updateModeToggleButtons();
+            updatePresetButtons();
+            if (timerMode === 'countdown') {
+                $presetButtons.style.display = 'flex';
+                $customTimeRow.style.display = 'flex';
+            } else {
+                $presetButtons.style.display = 'none';
+                $customTimeRow.style.display = 'none';
             }
-            function renderAll() {
-                $dateDisplay.textContent = getDateDisplayString();
-                updateDailyTotalDisplay();
-                updateTimerDisplay();
-                updateControlButtons();
-                updateStatusBadge();
-                updateModeToggleButtons();
-                updatePresetButtons();
-                if (timerMode === 'countdown') {
-                    $presetButtons.style.display = 'flex';
-                    $customTimeRow.style.display = 'flex';
-                } else {
-                    $presetButtons.style.display = 'none';
-                    $customTimeRow.style.display = 'none';
-                }
-                renderSessionsList();
-                if (window.renderTaskAreas) window.renderTaskAreas();
-                if (document.getElementById('pageStats').classList.contains('active')) {
-                    renderChart();
-                }
+            renderSessionsList();
+            if (window.renderTaskAreas) window.renderTaskAreas();
+            if (document.getElementById('pageStats').classList.contains('active')) {
+                renderChart();
             }
-            function restoreTimerState() {
-                const saved = loadTimerState();
-                if (!saved) return false;
-                timerMode = saved.timerMode;
-                presetMinutes = saved.presetMinutes;
-                timerStatus = saved.timerStatus;
-                targetSeconds = saved.targetSeconds;
-                elapsedBeforePause = saved.elapsedBeforePause;
-                timerStartTime = saved.timerStartTime;
-                if (timerStatus === 'running' && timerStartTime) {
-                    const now = Date.now();
-                    const additional = (now - timerStartTime) / 1000;
-                    if (timerMode === 'countdown' && elapsedBeforePause + additional >= targetSeconds) {
-                        const nowStr = getNowTimeString();
-                        const endTime = new Date();
-                        const startTime = new Date(endTime.getTime() - targetSeconds * 1000);
-                        const startStr = `${String(startTime.getHours()).padStart(2,'0')}:${String(startTime.getMinutes()).padStart(2,'0')}:${String(startTime.getSeconds()).padStart(2,'0')}`;
-                        addSessionToToday({ startTime: startStr, endTime: nowStr, duration: targetSeconds, mode: 'countdown', targetMinutes: presetMinutes });
-                        timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null; clearTimerState();
-                        $timerProgress.classList.add('completed-state');
-                        $timerTimeDisplay.classList.add('completed-time');
-                        $timerTimeDisplay.textContent = '00:00';
-                        setTimeout(() => { resetToPreset(); renderAll(); }, 2000);
-                        return true;
-                    }
-                    elapsedBeforePause += additional;
-                    timerStartTime = now;
-                    startTimerInterval();
-                    $timerCard.classList.add('running');
-                    return true;
-                } else if (timerStatus === 'paused') {
-                    timerStartTime = null;
+        }
+        function restoreTimerState() {
+            const saved = loadTimerState();
+            if (!saved) return false;
+            timerMode = saved.timerMode;
+            presetMinutes = saved.presetMinutes;
+            timerStatus = saved.timerStatus;
+            targetSeconds = saved.targetSeconds;
+            elapsedBeforePause = saved.elapsedBeforePause;
+            timerStartTime = saved.timerStartTime;
+            if (timerStatus === 'running' && timerStartTime) {
+                const now = Date.now();
+                const additional = (now - timerStartTime) / 1000;
+                if (timerMode === 'countdown' && elapsedBeforePause + additional >= targetSeconds) {
+                    const nowStr = getNowTimeString();
+                    const endTime = new Date();
+                    const startTime = new Date(endTime.getTime() - targetSeconds * 1000);
+                    const startStr = `${String(startTime.getHours()).padStart(2,'0')}:${String(startTime.getMinutes()).padStart(2,'0')}:${String(startTime.getSeconds()).padStart(2,'0')}`;
+                    addSessionToToday({ startTime: startStr, endTime: nowStr, duration: targetSeconds, mode: 'countdown', targetMinutes: presetMinutes });
+                    timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null; clearTimerState();
+                    $timerProgress.classList.add('completed-state');
+                    $timerTimeDisplay.classList.add('completed-time');
+                    $timerTimeDisplay.textContent = '00:00';
+                    setTimeout(() => { resetToPreset(); renderAll(); }, 2000);
                     return true;
                 }
-                return false;
+                elapsedBeforePause += additional;
+                timerStartTime = now;
+                startTimerInterval();
+                $timerCard.classList.add('running');
+                return true;
+            } else if (timerStatus === 'paused') {
+                timerStartTime = null;
+                return true;
             }
+            return false;
+        }
 
-            // Event Listeners
-            $btnStart.addEventListener('click', startTimer);
-            $btnPause.addEventListener('click', pauseTimer);
-            $btnStop.addEventListener('click', stopTimer);
-            $btnReset.addEventListener('click', () => {
-                if (timerStatus !== 'idle') {
-                    if (confirm('确定要重置计时器吗？当前计时将丢失。')) {
-                        stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
-                        clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
-                        resetToPreset(); renderAll();
-                    }
-                } else { resetToPreset(); renderAll(); }
-            });
-            $modeToggle.addEventListener('click', (e) => {
-                const btn = e.target.closest('button');
-                if (!btn) return;
-                if (btn.dataset.mode !== timerMode) setTimerMode(btn.dataset.mode);
-            });
-            $presetButtons.addEventListener('click', (e) => {
-                const btn = e.target.closest('.preset-btn');
-                if (btn) setPreset(parseInt(btn.dataset.minutes));
-            });
-            $customMinutes.addEventListener('change', () => {
-                let val = parseInt($customMinutes.value);
-                if (isNaN(val) || val < 1) val = 1;
-                if (val > 180) val = 180;
-                $customMinutes.value = val;
-                if (timerStatus === 'idle' && timerMode === 'countdown') {
-                    presetMinutes = val; targetSeconds = val * 60;
-                    $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
-                    $timerProgress.style.strokeDashoffset = '0';
-                    updatePresetButtons(); clearTimerState();
-                }
-            });
-            $clearHistoryBtn.addEventListener('click', () => {
-                if (confirm('确定要清除所有历史专注记录吗？此操作不可恢复。')) clearAllHistory();
-            });
-
-            // Tab 切换
-            document.getElementById('tabNav').addEventListener('click', (e) => {
-                const btn = e.target.closest('.tab-btn');
-                if (!btn) return;
-                const tab = btn.dataset.tab;
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                document.querySelectorAll('.page').forEach(p => {
-                    p.classList.remove('active');
-                    p.style.display = 'none';
-                });
-                const pageId = tab === 'focus' ? 'pageFocus' : (tab === 'tasks' ? 'pageTasks' : 'pageStats');
-                const activePage = document.getElementById(pageId);
-                activePage.classList.add('active');
-                activePage.style.display = 'flex';
-                if (tab === 'tasks' && window.renderTaskAreas) window.renderTaskAreas();
-                if (tab === 'stats') {
-                    const chartBars = document.getElementById('chartBars');
-                    const chartLabels = document.getElementById('chartLabels');
-                    if (chartBars) chartBars.style.display = 'flex';
-                    if (chartLabels) chartLabels.style.display = 'flex';
-                    setTimeout(() => renderChart(), 80);
-                }
-            });
-
-            // 键盘快捷键
-            document.addEventListener('keydown', (e) => {
-                if (e.target.tagName === 'INPUT') return;
-                switch (e.key) {
-                    case ' ': e.preventDefault(); timerStatus === 'running' ? pauseTimer() : startTimer(); break;
-                    case 'Escape': e.preventDefault(); stopTimer(); break;
-                    case 'r': if (e.ctrlKey) {
-                        e.preventDefault();
-                        if (timerStatus !== 'idle' && confirm('确定要重置计时器吗？')) {
-                            stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
-                            clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
-                            resetToPreset(); renderAll();
-                        }
-                    } break;
-                }
-            });
-
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible' && timerStatus === 'running') {
-                    updateTimerDisplay(); updateDailyTotalDisplay();
-                }
-            });
-
-            window.loadFocusData = loadFocusData;
-            window.saveFocusData = saveFocusData;
-            window.getTodayKey = getTodayKey;
-            window.showToast = showToast;
-
-            function init() {
-                const restored = restoreTimerState();
-                if (!restored) {
-                    timerMode = 'countdown'; presetMinutes = 25; targetSeconds = 25 * 60;
-                    timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
-                    $timerTimeDisplay.textContent = '25:00'; $customMinutes.value = 25;
-                }
-                if (timerStatus === 'idle' && timerMode === 'countdown') $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
-                renderAll();
-                if (timerStatus === 'running') { updateTimerDisplay(); updateDailyTotalDisplay(); }
-            }
-            init();
-
-            let lastDateCheck = getTodayKey();
-            setInterval(() => {
-                const currentKey = getTodayKey();
-                if (currentKey !== lastDateCheck) {
-                    lastDateCheck = currentKey;
-                    if (timerStatus === 'running' || timerStatus === 'paused') {
-                        stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
-                        clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
-                    }
+        $btnStart.addEventListener('click', startTimer);
+        $btnPause.addEventListener('click', pauseTimer);
+        $btnStop.addEventListener('click', stopTimer);
+        $btnReset.addEventListener('click', () => {
+            if (timerStatus !== 'idle') {
+                if (confirm('确定要重置计时器吗？当前计时将丢失。')) {
+                    stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
+                    clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
                     resetToPreset(); renderAll();
                 }
-                updateDailyTotalDisplay();
-                if (window.checkPhaseDeadlines) window.checkPhaseDeadlines();
-                if (timerStatus === 'running') updateTimerDisplay();
-            }, 1000);
-        })();
+            } else { resetToPreset(); renderAll(); }
+        });
+        $modeToggle.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            if (btn.dataset.mode !== timerMode) setTimerMode(btn.dataset.mode);
+        });
+        $presetButtons.addEventListener('click', (e) => {
+            const btn = e.target.closest('.preset-btn');
+            if (btn) setPreset(parseInt(btn.dataset.minutes));
+        });
+        $customMinutes.addEventListener('change', () => {
+            let val = parseInt($customMinutes.value);
+            if (isNaN(val) || val < 1) val = 1;
+            if (val > 180) val = 180;
+            $customMinutes.value = val;
+            if (timerStatus === 'idle' && timerMode === 'countdown') {
+                presetMinutes = val; targetSeconds = val * 60;
+                $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
+                $timerProgress.style.strokeDashoffset = '0';
+                updatePresetButtons(); clearTimerState();
+            }
+        });
+        $clearHistoryBtn.addEventListener('click', () => {
+            if (confirm('确定要清除所有历史专注记录吗？此操作不可恢复。')) clearAllHistory();
+        });
+
+        document.getElementById('tabNav').addEventListener('click', (e) => {
+            const btn = e.target.closest('.tab-btn');
+            if (!btn) return;
+            const tab = btn.dataset.tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+            const pageId = tab === 'focus' ? 'pageFocus' : (tab === 'tasks' ? 'pageTasks' : 'pageStats');
+            const activePage = document.getElementById(pageId);
+            activePage.classList.add('active');
+            activePage.style.display = 'flex';
+            if (tab === 'tasks' && window.renderTaskAreas) window.renderTaskAreas();
+            if (tab === 'stats') {
+                setTimeout(() => renderChart(), 80);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT') return;
+            switch (e.key) {
+                case ' ': e.preventDefault(); timerStatus === 'running' ? pauseTimer() : startTimer(); break;
+                case 'Escape': e.preventDefault(); stopTimer(); break;
+                case 'r': if (e.ctrlKey) { e.preventDefault(); if (timerStatus !== 'idle' && confirm('确定要重置计时器吗？')) {
+                    stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
+                    clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
+                    resetToPreset(); renderAll();
+                } } break;
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && timerStatus === 'running') {
+                updateTimerDisplay(); updateDailyTotalDisplay();
+            }
+        });
+
+        window.loadFocusData = loadFocusData;
+        window.saveFocusData = saveFocusData;
+        window.getTodayKey = getTodayKey;
+        window.showToast = showToast;
+
+        function init() {
+            const restored = restoreTimerState();
+            if (!restored) {
+                timerMode = 'countdown'; presetMinutes = 25; targetSeconds = 25 * 60;
+                timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
+                $timerTimeDisplay.textContent = '25:00'; $customMinutes.value = 25;
+            }
+            if (timerStatus === 'idle' && timerMode === 'countdown') $timerTimeDisplay.textContent = formatTimeMMSS(targetSeconds);
+            renderAll();
+            if (timerStatus === 'running') { updateTimerDisplay(); updateDailyTotalDisplay(); }
+        }
+        init();
+
+        let lastDateCheck = getTodayKey();
+        setInterval(() => {
+            const currentKey = getTodayKey();
+            if (currentKey !== lastDateCheck) {
+                lastDateCheck = currentKey;
+                if (timerStatus === 'running' || timerStatus === 'paused') {
+                    stopTimerInterval(); timerStatus = 'idle'; elapsedBeforePause = 0; timerStartTime = null;
+                    clearTimerState(); $timerCard.classList.remove('running'); $dailyTotalTime.classList.remove('active-focus');
+                }
+                resetToPreset(); renderAll();
+            }
+            updateDailyTotalDisplay();
+            if (window.checkPhaseDeadlines) window.checkPhaseDeadlines();
+            if (timerStatus === 'running') updateTimerDisplay();
+        }, 1000);
+    })();
     </script>
+
+    <!-- 先加载 SortableJS 库（用于拖拽排序） -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+    <!-- 任务管理脚本（需要 SortableJS 已加载） -->
+    <script>
+    (function() {
+        const $dailyTaskInput = document.getElementById('dailyTaskInput');
+        const $addDailyTaskBtn = document.getElementById('addDailyTaskBtn');
+        const $dailyTaskList = document.getElementById('dailyTaskList');
+        const $phaseTaskInput = document.getElementById('phaseTaskInput');
+        const $addPhaseTaskBtn = document.getElementById('addPhaseTaskBtn');
+        const $phaseTaskList = document.getElementById('phaseTaskList');
+
+        const DAILY_TEMPLATE_KEY = 'daily_task_templates_v1';
+        const PHASE_TASKS_KEY = 'phase_tasks_v1';
+        const PHASE_TASKS_ORDER_KEY = 'phase_tasks_order_v1';
+
+        function loadFromStorage(key, defaultValue) {
+            try { return JSON.parse(localStorage.getItem(key) || 'null') || defaultValue; } catch (e) { return defaultValue; }
+        }
+        function saveToStorage(key, data) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch (e) {}
+        }
+        function getDailyTemplates() { return loadFromStorage(DAILY_TEMPLATE_KEY, []); }
+        function saveDailyTemplates(templates) { saveToStorage(DAILY_TEMPLATE_KEY, templates); }
+        function getTodayDailyTasks() {
+            try {
+                const data = window.loadFocusData();
+                const todayKey = window.getTodayKey();
+                return data[todayKey]?.dailyTasks || [];
+            } catch (e) { return []; }
+        }
+        function saveTodayDailyTasks(tasks) {
+            try {
+                const data = window.loadFocusData();
+                const todayKey = window.getTodayKey();
+                if (!data[todayKey]) data[todayKey] = { sessions: [] };
+                data[todayKey].dailyTasks = tasks;
+                window.saveFocusData(data);
+            } catch (e) {}
+        }
+        function initTodayDailyTasks() {
+            let todayTasks = getTodayDailyTasks();
+            if (todayTasks.length === 0) {
+                const templates = getDailyTemplates();
+                todayTasks = templates.map(t => ({
+                    id: Date.now() + Math.random(), templateId: t.id, name: t.name, completed: false
+                }));
+                saveTodayDailyTasks(todayTasks);
+            }
+            return todayTasks;
+        }
+
+        function savePhaseTasksOrder(orderArray) {
+            saveToStorage(PHASE_TASKS_ORDER_KEY, orderArray);
+        }
+        function loadPhaseTasksOrder() {
+            return loadFromStorage(PHASE_TASKS_ORDER_KEY, null);
+        }
+        function sortTasksByOrder(tasks, order) {
+            if (!order || order.length === 0) return tasks;
+            const orderMap = new Map();
+            order.forEach((id, index) => orderMap.set(id, index));
+            return tasks.sort((a, b) => {
+                const indexA = orderMap.has(a.id) ? orderMap.get(a.id) : Infinity;
+                const indexB = orderMap.has(b.id) ? orderMap.get(b.id) : Infinity;
+                return indexA - indexB;
+            });
+        }
+
+        function getPhaseTasks() { return loadFromStorage(PHASE_TASKS_KEY, []); }
+        function savePhaseTasks(tasks) { saveToStorage(PHASE_TASKS_KEY, tasks); }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function renderDailyTasks() {
+            const tasks = initTodayDailyTasks();
+            if (tasks.length === 0) {
+                $dailyTaskList.innerHTML = '<div class="no-tasks">✨ 还没有日常任务，添加一个吧</div>';
+                return;
+            }
+            $dailyTaskList.innerHTML = tasks.map((task, idx) => `
+                <div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
+                    <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} data-id="${task.id}">
+                    <span class="task-text">${escapeHtml(task.name)}</span>
+                    <button class="task-delete" data-id="${task.id}" title="删除此任务">×</button>
+                </div>`).join('');
+            
+            document.querySelectorAll('#dailyTaskList .task-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const id = cb.dataset.id;
+                    toggleDailyTaskById(id);
+                });
+            });
+            document.querySelectorAll('#dailyTaskList .task-delete').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = btn.dataset.id;
+                    removeDailyTaskById(id);
+                });
+            });
+        }
+
+        function renderPhaseTasks() {
+            let tasks = getPhaseTasks();
+            let changed = false;
+            const now = Date.now();
+            tasks = tasks.map(task => {
+                if (!task.completed && task.deadline && new Date(task.deadline).getTime() < now) {
+                    changed = true;
+                    return { ...task, completed: true };
+                }
+                return task;
+            });
+            if (changed) savePhaseTasks(tasks);
+            
+            const savedOrder = loadPhaseTasksOrder();
+            const sortedTasks = sortTasksByOrder([...tasks], savedOrder);
+            
+            if (sortedTasks.length === 0) {
+                $phaseTaskList.innerHTML = '<div class="no-tasks">🚀 阶段任务会在这里显示</div>';
+                return;
+            }
+            
+            $phaseTaskList.innerHTML = sortedTasks.map(task => {
+                let deadlineText = '';
+                if (task.deadline) {
+                    const d = new Date(task.deadline);
+                    deadlineText = `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+                }
+                return `<div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
+                    <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} data-id="${task.id}">
+                    <span class="task-text">${escapeHtml(task.name)}</span>
+                    ${deadlineText ? `<span class="task-deadline">📅 ${deadlineText}</span>` : ''}
+                    <button class="task-delete" data-id="${task.id}" title="删除此任务">×</button>
+                </div>`;
+            }).join('');
+            
+            document.querySelectorAll('#phaseTaskList .task-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const id = cb.dataset.id;
+                    togglePhaseTaskById(id);
+                });
+            });
+            document.querySelectorAll('#phaseTaskList .task-delete').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = btn.dataset.id;
+                    removePhaseTaskById(id);
+                });
+            });
+
+            if (window.phaseSortableInstance) {
+                window.phaseSortableInstance.destroy();
+            }
+            if ($phaseTaskList && typeof Sortable !== 'undefined') {
+                window.phaseSortableInstance = new Sortable($phaseTaskList, {
+                    animation: 200,
+                    handle: '.task-item',
+                    onEnd: function() {
+                        const items = $phaseTaskList.querySelectorAll('.task-item');
+                        const newOrder = Array.from(items).map(item => item.dataset.id);
+                        savePhaseTasksOrder(newOrder);
+                        const currentTasks = getPhaseTasks();
+                        const finalOrder = [...newOrder];
+                        currentTasks.forEach(task => {
+                            if (!finalOrder.includes(task.id.toString())) {
+                                finalOrder.push(task.id.toString());
+                            }
+                        });
+                        savePhaseTasksOrder(finalOrder);
+                    }
+                });
+            }
+        }
+
+        function addDailyTask() {
+            const name = $dailyTaskInput.value.trim();
+            if (!name) return;
+            const templates = getDailyTemplates();
+            const templateId = Date.now() + Math.random();
+            templates.push({ id: templateId, name });
+            saveDailyTemplates(templates);
+            const todayTasks = getTodayDailyTasks();
+            todayTasks.push({ id: Date.now() + Math.random(), templateId, name, completed: false });
+            saveTodayDailyTasks(todayTasks);
+            $dailyTaskInput.value = '';
+            renderDailyTasks();
+            if (window.showToast) window.showToast('日常任务已添加', 'success');
+        }
+        function toggleDailyTaskById(id) {
+            const todayTasks = getTodayDailyTasks();
+            const task = todayTasks.find(t => t.id == id);
+            if (task) {
+                task.completed = !task.completed;
+                saveTodayDailyTasks(todayTasks);
+                renderDailyTasks();
+            }
+        }
+        function removeDailyTaskById(id) {
+            let todayTasks = getTodayDailyTasks();
+            todayTasks = todayTasks.filter(t => t.id != id);
+            saveTodayDailyTasks(todayTasks);
+            renderDailyTasks();
+            if (window.showToast) window.showToast('日常任务已删除', 'success');
+        }
+
+        function addPhaseTask() {
+            const name = $phaseTaskInput.value.trim();
+            if (!name) return;
+            const deadlineVal = document.getElementById('phaseDeadlineInput').value;
+            let deadline = null;
+            if (deadlineVal) {
+                deadline = new Date(deadlineVal).toISOString();
+            }
+            const tasks = getPhaseTasks();
+            const newTask = { id: Date.now() + Math.random(), name, completed: false, deadline };
+            tasks.push(newTask);
+            savePhaseTasks(tasks);
+            
+            const currentOrder = loadPhaseTasksOrder() || [];
+            currentOrder.push(newTask.id.toString());
+            savePhaseTasksOrder(currentOrder);
+            
+            $phaseTaskInput.value = '';
+            document.getElementById('phaseDeadlineInput').value = '';
+            renderPhaseTasks();
+            if (window.showToast) window.showToast('阶段任务已添加', 'success');
+        }
+        function togglePhaseTaskById(id) {
+            const tasks = getPhaseTasks();
+            const task = tasks.find(t => t.id == id);
+            if (task) {
+                task.completed = !task.completed;
+                savePhaseTasks(tasks);
+                renderPhaseTasks();
+            }
+        }
+        function removePhaseTaskById(id) {
+            let tasks = getPhaseTasks();
+            tasks = tasks.filter(t => t.id != id);
+            savePhaseTasks(tasks);
+            
+            let currentOrder = loadPhaseTasksOrder() || [];
+            currentOrder = currentOrder.filter(orderId => orderId != id);
+            savePhaseTasksOrder(currentOrder);
+            
+            renderPhaseTasks();
+            if (window.showToast) window.showToast('阶段任务已删除', 'success');
+        }
+
+        $addDailyTaskBtn.addEventListener('click', addDailyTask);
+        $dailyTaskInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addDailyTask(); });
+        $addPhaseTaskBtn.addEventListener('click', addPhaseTask);
+        $phaseTaskInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addPhaseTask(); });
+
+        window.checkPhaseDeadlines = function() {
+            const tasks = getPhaseTasks();
+            const now = Date.now();
+            let changed = false;
+            const updated = tasks.map(task => {
+                if (!task.completed && task.deadline && new Date(task.deadline).getTime() < now) {
+                    changed = true;
+                    return { ...task, completed: true };
+                }
+                return task;
+            });
+            if (changed) { savePhaseTasks(updated); renderPhaseTasks(); }
+        };
+        window.renderTaskAreas = function() {
+            renderDailyTasks();
+            renderPhaseTasks();
+        };
+
+        renderDailyTasks();
+        renderPhaseTasks();
+    })();
+    </script>
+
+    <!-- Service Worker 注册 -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./service-worker.js');
             });
         }
-    </script>
-    <script>
-        (function() {
-            // ======================= 任务管理（完全基于 ID，支持按截止时间排序） =======================
-            const $dailyTaskInput = document.getElementById('dailyTaskInput');
-            const $addDailyTaskBtn = document.getElementById('addDailyTaskBtn');
-            const $dailyTaskList = document.getElementById('dailyTaskList');
-            const $phaseTaskInput = document.getElementById('phaseTaskInput');
-            const $addPhaseTaskBtn = document.getElementById('addPhaseTaskBtn');
-            const $phaseTaskList = document.getElementById('phaseTaskList');
-
-            const DAILY_TEMPLATE_KEY = 'daily_task_templates_v1';
-            const PHASE_TASKS_KEY = 'phase_tasks_v1';
-
-            function loadFromStorage(key, defaultValue) {
-                try { return JSON.parse(localStorage.getItem(key) || 'null') || defaultValue; } catch (e) { return defaultValue; }
-            }
-            function saveToStorage(key, data) {
-                try { localStorage.setItem(key, JSON.stringify(data)); } catch (e) {}
-            }
-            function getDailyTemplates() { return loadFromStorage(DAILY_TEMPLATE_KEY, []); }
-            function saveDailyTemplates(templates) { saveToStorage(DAILY_TEMPLATE_KEY, templates); }
-            function getTodayDailyTasks() {
-                try {
-                    const data = window.loadFocusData();
-                    const todayKey = window.getTodayKey();
-                    return data[todayKey]?.dailyTasks || [];
-                } catch (e) { return []; }
-            }
-            function saveTodayDailyTasks(tasks) {
-                try {
-                    const data = window.loadFocusData();
-                    const todayKey = window.getTodayKey();
-                    if (!data[todayKey]) data[todayKey] = { sessions: [] };
-                    data[todayKey].dailyTasks = tasks;
-                    window.saveFocusData(data);
-                } catch (e) {}
-            }
-            function initTodayDailyTasks() {
-                let todayTasks = getTodayDailyTasks();
-                if (todayTasks.length === 0) {
-                    const templates = getDailyTemplates();
-                    todayTasks = templates.map(t => ({
-                        id: Date.now() + Math.random(), templateId: t.id, name: t.name, completed: false
-                    }));
-                    saveTodayDailyTasks(todayTasks);
-                }
-                return todayTasks;
-            }
-
-            function getPhaseTasks() { return loadFromStorage(PHASE_TASKS_KEY, []); }
-            function savePhaseTasks(tasks) { saveToStorage(PHASE_TASKS_KEY, tasks); }
-
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-
-            // 日常任务渲染
-            function renderDailyTasks() {
-                const tasks = initTodayDailyTasks();
-                if (tasks.length === 0) {
-                    $dailyTaskList.innerHTML = '<div class="no-tasks">✨ 还没有日常任务，添加一个吧</div>';
-                    return;
-                }
-                $dailyTaskList.innerHTML = tasks.map((task, idx) => `
-                    <div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
-                        <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} data-id="${task.id}">
-                        <span class="task-text">${escapeHtml(task.name)}</span>
-                        <button class="task-delete" data-id="${task.id}" title="删除此任务">×</button>
-                    </div>`).join('');
-                
-                document.querySelectorAll('#dailyTaskList .task-checkbox').forEach(cb => {
-                    cb.addEventListener('change', (e) => {
-                        const id = cb.dataset.id;
-                        toggleDailyTaskById(id);
-                    });
-                });
-                document.querySelectorAll('#dailyTaskList .task-delete').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const id = btn.dataset.id;
-                        removeDailyTaskById(id);
-                    });
-                });
-            }
-
-            // 阶段任务排序函数（按截止时间升序，无截止时间的排在最后）
-            function getSortedPhaseTasks(tasks) {
-                return [...tasks].sort((a, b) => {
-                    const timeA = a.deadline ? new Date(a.deadline).getTime() : Infinity;
-                    const timeB = b.deadline ? new Date(b.deadline).getTime() : Infinity;
-                    return timeA - timeB;
-                });
-            }
-
-            function renderPhaseTasks() {
-                let tasks = getPhaseTasks();
-                // 自动将过期的任务标记为已完成
-                let changed = false;
-                const now = Date.now();
-                tasks = tasks.map(task => {
-                    if (!task.completed && task.deadline && new Date(task.deadline).getTime() < now) {
-                        changed = true;
-                        return { ...task, completed: true };
-                    }
-                    return task;
-                });
-                if (changed) savePhaseTasks(tasks);
-                
-                const sortedTasks = getSortedPhaseTasks(tasks);
-                if (sortedTasks.length === 0) {
-                    $phaseTaskList.innerHTML = '<div class="no-tasks">🚀 阶段任务会在这里显示</div>';
-                    return;
-                }
-                
-                $phaseTaskList.innerHTML = sortedTasks.map(task => {
-                    let deadlineText = '';
-                    if (task.deadline) {
-                        const d = new Date(task.deadline);
-                        deadlineText = `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-                    }
-                    return `<div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
-                        <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} data-id="${task.id}">
-                        <span class="task-text">${escapeHtml(task.name)}</span>
-                        ${deadlineText ? `<span class="task-deadline">📅 ${deadlineText}</span>` : ''}
-                        <button class="task-delete" data-id="${task.id}" title="删除此任务">×</button>
-                    </div>`;
-                }).join('');
-                
-                document.querySelectorAll('#phaseTaskList .task-checkbox').forEach(cb => {
-                    cb.addEventListener('change', (e) => {
-                        const id = cb.dataset.id;
-                        togglePhaseTaskById(id);
-                    });
-                });
-                document.querySelectorAll('#phaseTaskList .task-delete').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const id = btn.dataset.id;
-                        removePhaseTaskById(id);
-                    });
-                });
-            }
-
-            // 日常任务操作（基于 ID）
-            function addDailyTask() {
-                const name = $dailyTaskInput.value.trim();
-                if (!name) return;
-                const templates = getDailyTemplates();
-                const templateId = Date.now() + Math.random();
-                templates.push({ id: templateId, name });
-                saveDailyTemplates(templates);
-                const todayTasks = getTodayDailyTasks();
-                todayTasks.push({ id: Date.now() + Math.random(), templateId, name, completed: false });
-                saveTodayDailyTasks(todayTasks);
-                $dailyTaskInput.value = '';
-                renderDailyTasks();
-                if (window.showToast) window.showToast('日常任务已添加', 'success');
-            }
-            function toggleDailyTaskById(id) {
-                const todayTasks = getTodayDailyTasks();
-                const task = todayTasks.find(t => t.id == id);
-                if (task) {
-                    task.completed = !task.completed;
-                    saveTodayDailyTasks(todayTasks);
-                    renderDailyTasks();
-                }
-            }
-            function removeDailyTaskById(id) {
-                let todayTasks = getTodayDailyTasks();
-                todayTasks = todayTasks.filter(t => t.id != id);
-                saveTodayDailyTasks(todayTasks);
-                // 注意：不删除模板，保留以便日后使用
-                renderDailyTasks();
-                if (window.showToast) window.showToast('日常任务已删除', 'success');
-            }
-
-            // 阶段任务操作（基于 ID）
-            function addPhaseTask() {
-                const name = $phaseTaskInput.value.trim();
-                if (!name) return;
-                const deadlineVal = document.getElementById('phaseDeadlineInput').value;
-                let deadline = null;
-                if (deadlineVal) {
-                    deadline = new Date(deadlineVal).toISOString();
-                }
-                const tasks = getPhaseTasks();
-                tasks.push({ id: Date.now() + Math.random(), name, completed: false, deadline });
-                savePhaseTasks(tasks);
-                $phaseTaskInput.value = '';
-                document.getElementById('phaseDeadlineInput').value = '';
-                renderPhaseTasks();
-                if (window.showToast) window.showToast('阶段任务已添加', 'success');
-            }
-            function togglePhaseTaskById(id) {
-                const tasks = getPhaseTasks();
-                const task = tasks.find(t => t.id == id);
-                if (task) {
-                    task.completed = !task.completed;
-                    savePhaseTasks(tasks);
-                    renderPhaseTasks();
-                }
-            }
-            function removePhaseTaskById(id) {
-                let tasks = getPhaseTasks();
-                tasks = tasks.filter(t => t.id != id);
-                savePhaseTasks(tasks);
-                renderPhaseTasks();
-                if (window.showToast) window.showToast('阶段任务已删除', 'success');
-            }
-
-            // 绑定按钮事件
-            $addDailyTaskBtn.addEventListener('click', addDailyTask);
-            $dailyTaskInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addDailyTask(); });
-            $addPhaseTaskBtn.addEventListener('click', addPhaseTask);
-            $phaseTaskInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addPhaseTask(); });
-
-            // 过期检查
-            window.checkPhaseDeadlines = function() {
-                const tasks = getPhaseTasks();
-                const now = Date.now();
-                let changed = false;
-                const updated = tasks.map(task => {
-                    if (!task.completed && task.deadline && new Date(task.deadline).getTime() < now) {
-                        changed = true;
-                        return { ...task, completed: true };
-                    }
-                    return task;
-                });
-                if (changed) { savePhaseTasks(updated); renderPhaseTasks(); }
-            };
-            window.renderTaskAreas = function() {
-                renderDailyTasks();
-                renderPhaseTasks();
-            };
-
-            // 初始渲染
-            renderDailyTasks();
-            renderPhaseTasks();
-        })();
     </script>
 </body>
 </html>
